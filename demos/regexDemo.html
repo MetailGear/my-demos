@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script
+            src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+    <p>
+        str = <input id="str">;
+    </p>
+    <p>
+        reg = /<input id="regex">/i;
+    </p>
+    <p>
+        <button id="run">RUN</button>
+    </p>
+    <p class="results">
+        str.search(reg) = "<span id="searchResult"></span>"
+    </p>
+    <p class="results">
+        str.replace(reg, "@") = "<span id="replaceResult"></span>"
+    </p>
+    <p class="results">
+        str.split(reg) = [<span id="splitResult"></span>]
+    </p>
+    <p class="results">
+        reg.test(str) = <span id="testResult"></span>
+    </p>
+    <p class="results">
+        reg.exec(str) = [<span id="execResult"></span>]
+    </p>
+    <p class="results">
+        reg.compile(reg) //没看懂这东西有什么卵用
+    </p>
+    <p class="results">
+        str.match(reg) = [<span id="matchResult"></span>]
+    </p>
+</body>
+
+<script>
+    (function () {
+        $(".results").hide();
+        $("#run").bind("click",run);
+    })();
+    function run(){
+        var str = $("#str").val();
+        var regex = new RegExp($("#regex").val(), "i");
+        $("#searchResult").html(str.search(regex));
+        $("#replaceResult").html(str.replace(regex, "@"));
+        $("#testResult").html(regex.test(str));
+        var execArray = regex.exec(str);
+        for(var i in execArray){
+            $("#execResult").append("'"+execArray[i]+"', ");
+        }
+        var matchArray = str.match(regex);
+        for(var i in matchArray){
+            $("#matchResult").append("'"+matchArray[i]+"', ");
+        }
+        var splitArray = str.split(regex);
+        for(var i in splitArray){
+            $("#splitResult").append("'"+splitArray[i]+"', ");
+        }
+
+
+        $(".results").show();
+    }
+
+</script>
+</html>
