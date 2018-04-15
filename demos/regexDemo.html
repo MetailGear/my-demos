@@ -50,14 +50,17 @@
         $("#replaceResult").html(str.replace(regex, "@"));
         $("#testResult").html(regex.test(str));
         var execArray = regex.exec(str);
+        $("#execResult").html("")
         for(var i in execArray){
             $("#execResult").append("'"+execArray[i]+"', ");
         }
         var matchArray = str.match(regex);
+        $("#matchResult").html("")
         for(var i in matchArray){
             $("#matchResult").append("'"+matchArray[i]+"', ");
         }
         var splitArray = str.split(regex);
+        $("#splitResult").html("")
         for(var i in splitArray){
             $("#splitResult").append("'"+splitArray[i]+"', ");
         }
